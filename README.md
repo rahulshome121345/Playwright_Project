@@ -2,6 +2,10 @@
 
 <h3 align="center">End-to-End Test Automation using Playwright</h3>
 
+<div align="center">
+  <img src="playwright%20framework.png" alt="Playwright Framework Architecture" width="600"/>
+</div>
+
 ## 📋 Project Overview
 
 This repository contains comprehensive Playwright test automation scripts for end-to-end (E2E) testing. It demonstrates best practices for modern web application testing using Playwright's powerful features including XPath locators, CSS selectors, and advanced interaction patterns.
