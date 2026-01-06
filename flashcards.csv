@@ -1,0 +1,78 @@
+"In AI-powered test automation, what is the primary limitation of a Large Language Model (LLM) on its own?","An LLM can generate content and code, but it cannot execute it or interact with browsers, APIs, or databases."
+What component is introduced to overcome the execution limitations of an LLM in test automation?,"An agent is used, which takes instructions from the LLM to perform real-world tasks using external tools."
+The external tool that an agent uses to interact with the browser and execute test code in the SDET-QA video is called _____.,MCP (Model Context Protocol)
+"What is the relationship between an LLM, an Agent, and an MCP in the described test automation architecture?","The user prompts the LLM, which instructs the Agent, and the Agent uses the MCP to perform the actions."
+What are the two main prerequisites mentioned for using Playwright MCP with GitHub Copilot and VS Code?,A VS Code editor and a GitHub account.
+"In the context of the SDET-QA video, is GitHub Copilot classified as an LLM, an agent, or an MCP?",GitHub Copilot is classified as an LLM.
+What is the function of the Playwright MCP server after GitHub Copilot generates automation code?,The Playwright MCP server runs the generated code and can automatically fix issues if the code fails.
+What are the four main ways to select an option from a standard dropdown in Playwright using the `selectOption` method?,"By visible text (label), value attribute, index, or by passing an object with keys like `{ value: '...' }` or `{ label: '...' }`."
+How can you verify the total number of options within a dropdown element in Playwright?,"By locating all option elements and using the `.toHaveCount()` assertion (e.g., `expect(options).toHaveCount(10)`)."
+What Playwright method retrieves all the visible text from a group of located elements as an array of strings?,The `allInnerTexts()` method.
+"How can you check if a specific option, like 'Japan', is present in a dropdown menu using Playwright assertions?",Retrieve all option texts into an array and use the `expect(array).toContain('Japan')` assertion.
+What is the key difference in selecting options between a single-select and a multi-select dropdown in Playwright?,"In a multi-select dropdown, you can pass an array of values to the `selectOption` method to select multiple options at once."
+Describe a method to verify if the options in a dropdown are sorted alphabetically.,"Retrieve all option texts into an array, create a sorted copy of that array, and then assert that the original array is equal to the sorted copy."
+"What JavaScript data structure is ideal for identifying duplicate options within a dropdown list, and why?","A `Set` is ideal because it cannot store duplicate values, allowing you to compare its size to the original array's size to find duplicates."
+What are 'auto-suggest' or 'dynamic' dropdowns?,They are dropdowns where the options change dynamically based on the user's input in a search box.
+What is a common challenge when trying to inspect elements within an auto-suggest dropdown?,The elements often disappear from the DOM as soon as you try to inspect them.
+What command can be used in the browser's console to prevent auto-suggest options from disappearing during inspection?,The `Emulate a focused page` command in the browser's command menu (Ctrl+Shift+P).
+"In Playwright, if a locator matches multiple elements, how can you iterate through them to find and click a specific one based on its text?","Use a `for` loop from 0 to the count of the elements, get the text of each element using `.nth(i)`, and click it if the text matches."
+"The Playwright feature that performs checks on elements to ensure they are, for example, visible, stable, and enabled before performing an action is called _____.",Auto-waiting
+What is the default timeout for a single test in Playwright?,"30,000 milliseconds (30 seconds)."
+What is the default timeout for an `expect` assertion in Playwright?,"5,000 milliseconds (5 seconds)."
+Where can you configure global timeouts for tests and assertions in a Playwright project?,In the `playwright.config.ts` file.
+How do you override a global timeout for a single specific test in Playwright?,By using `test.setTimeout(milliseconds)` within the test file.
+What is the difference between an auto-retrying assertion and a non-retrying assertion in Playwright?,"Auto-retrying assertions operate on locators/pages and wait for conditions to be met, whilst non-retrying assertions operate on static values and do not wait."
+What is a 'hard assertion' in the context of Playwright testing?,A hard assertion (the default `expect`) will terminate the test execution immediately if it fails.
+"How do you implement a 'soft assertion' in Playwright, and what is its behaviour upon failure?","You use `expect.soft()`; if it fails, it marks the test as failed but allows subsequent steps and assertions in the test to continue executing."
+What is the Playwright Codegen tool used for?,It records user interactions on a web page and automatically generates the corresponding Playwright test script.
+How can you use the Playwright Inspector to debug a test step-by-step?,"Run the test with the `--debug` flag, which opens the Inspector, allowing you to step over each action in the script."
+What is the purpose of the 'Pick Locator' feature in the Playwright Inspector?,"It allows you to click on any element on the web page, and it will suggest a suitable Playwright locator for that element."
+"In CSS selectors, the _____ symbol is used to represent an element's ID.",# (hash)
+"In CSS selectors, the _____ symbol is used to represent an element's class.",. (dot)
+How would you write a CSS selector for an `input` tag with the attribute `name` equal to `'q'`?,`input[name='q']`
+What is the difference between an absolute and a relative path in CSS or XPath locators?,"An absolute path starts from the root of the HTML document, whilst a relative path starts from a specific, uniquely identifiable element."
+"In Playwright, what does the `test.describe()` function do?",It allows you to group related tests together under a single suite name.
+How can you execute only a specific group of tests defined by a `describe` block from the command line?,"By using the `--grep` command-line flag followed by the group name (e.g., `npx playwright test --grep ""Group 1""`)."
+What is the purpose of the `beforeEach` and `afterEach` hooks in Playwright?,"`beforeEach` runs a block of code before every test in a file/group, and `afterEach` runs after every test."
+When would you use the `beforeAll` and `afterAll` hooks instead of `beforeEach` and `afterEach`?,"When you need to perform a setup action once before all tests run (e.g., opening a database connection) and a teardown action once after all tests have finished."
+"In Playwright test annotations, what does `test.skip()` do?","It marks a test to be skipped during the test run, and it will be reported as 'skipped'."
+The `test.fail()` annotation is used for tests that are _____.,"known to be broken or failing, marking them as expected failures."
+How do you add tags like `@sanity` or `@regression` to a Playwright test?,"You add the tag to the test title string (e.g., `test('Login test @sanity', ...)`)."
+What command-line flag is used to run Playwright tests based on their tags?,"The `--grep` flag, often with a regular expression (e.g., `npx playwright test --grep @sanity`)."
+How do you run tests that have the `@sanity` tag but NOT the `@regression` tag?,Using the `--grep` flag for the included tag and the `--grep-invert` flag for the excluded tag.
+How must you register an event handler to manage a dialogue box (like an alert) in Playwright?,"You must set up the `page.on('dialog', ...)` event listener *before* the action that triggers the dialogue."
+"Within a dialogue handler, what method is used to accept a confirmation alert?",The `dialog.accept()` method.
+What Playwright method is used to specifically locate a frame or iframe on a page?,`page.frameLocator('selector-for-the-frame')`.
+"After locating a frame with `frameLocator`, how do you locate an element *inside* that frame?","You chain a `.locator()` call onto the frame locator object (e.g., `frame.locator('selector-for-the-element')`)."
+How do you get a locator that represents all table rows (`<tr>`) within a table body (`<tbody>`) in Playwright?,"Locate the table, then the `tbody`, and chain a `.locator('tr')` to get the rows."
+What does a 'strict mode violation' error typically indicate in Playwright?,"It indicates that a locator, which was expected to return one element, matched multiple elements on the page."
+"If a locator matches multiple products, how can you get the text of all of them into a single array without a loop?",Use the `.allInnerTexts()` method on the locator.
+"When handling a paginated table where the total number of pages is unknown, what type of loop is most appropriate?","A `while` loop, which continues as long as a condition (e.g., the 'next' button being enabled) is true."
+How can you determine if a 'next page' button on a paginated table is disabled?,"By checking for a specific attribute or class (e.g., 'disabled') that is present only when the button is disabled."
+"To handle a date picker, what is the first action that typically needs to be performed?",You need to click on the date input field to make the calendar widget visible.
+What is the logic for navigating to a future month and year in a date picker?,Use a `while` loop that continuously clicks the 'next' button until the displayed month and year match the target month and year.
+What is a 'Browser Context' in Playwright?,"It is an isolated, incognito-like session within a single browser instance, allowing for independent operation of multiple sessions."
+How can you create multiple pages or tabs that operate within the same browser context?,By calling `context.newPage()` multiple times.
+"When an action opens a new tab, what Playwright event must you wait for to get a handle on the new page?","You must wait for the `'page'` event on the browser context, using `context.waitForEvent('page')`."
+How can you provide credentials for a basic HTTP authentication pop-up directly in the URL?,By embedding them in the URL with the format `http://username:password@example.com`.
+What does setting `fullyParallel: true` in `playwright.config.ts` enable?,It allows Playwright to run test files in parallel using multiple worker processes.
+The number of parallel processes used by Playwright is controlled by the `_____` setting in the config file.,workers
+How can you force tests to run sequentially (serially) instead of in parallel?,By setting `fullyParallel: false` or by setting `workers: 1` in the configuration file.
+What is parameterisation or data-driven testing?,It is the practice of running the same test multiple times with different sets of input data.
+"When parameterising a test with multiple inputs, why must the test title be dynamic?","Because Playwright considers each run with different data as a separate test, and all tests must have a unique title."
+How can you make a test title dynamic in Playwright when using a loop for parameterisation?,"By using a template literal (backticks) for the title and embedding the data variable, e.g., `test(`Search for ${item}`, ...)`."
+"What file format is mentioned as having built-in support in JavaScript/TypeScript for data-driven testing, without needing third-party libraries?",JSON (JavaScript Object Notation).
+How can you programmatically capture a screenshot of just a specific element in Playwright?,"First, get the locator for the element, then call the `.screenshot()` method on that locator object."
+"In the Playwright config file, what does the screenshot option `'only-on-failure'` do?",It automatically captures a screenshot of the page at the moment a test fails.
+What does the Playwright Trace Viewer provide?,"It provides a detailed, time-travel-like recording of a test run, including actions, network requests, console logs, and DOM snapshots for debugging."
+How do you enable trace recording for all tests in a project?,"By setting the `trace` option (e.g., to `'on'` or `'on-first-retry'`) in the `use` section of `playwright.config.ts`."
+What is a 'flaky test'?,"A test that passes sometimes and fails other times without any changes to the code or application, often due to timing or intermittent network issues."
+How does Playwright's `retries` configuration setting help manage flaky tests?,"It automatically re-runs a failed test a specified number of times, passing the test if any of the retries succeed."
+What is the primary architectural difference between Selenium WebDriver and Playwright regarding browser communication?,"Selenium uses the W3C protocol over HTTP for each command, whereas Playwright uses a persistent WebSocket connection."
+Why does using a WebSocket connection generally make Playwright faster than Selenium?,"The connection is established once, allowing back-to-back requests without the overhead of setting up a new HTTP connection for every command."
+"In Playwright's built-in locators, `getByAltText` is specifically used to find _____ elements.",image (`<img>`)
+What is the purpose of the `getByPlaceholder` locator in Playwright?,It locates an input element based on its placeholder text.
+The `getByRole` locator finds elements based on ARIA roles. What is the role of a standard `<button>` element?,The role is 'button'.
+"If you want to customise the attribute that `getByTestId` looks for, where do you make this change?","In the `playwright.config.ts` file, by setting `testIdAttribute` to your custom attribute name."
+"In XPath, what does the `parent::*` axis select?",It selects the immediate parent element of the current node.
+What is the difference between the `following` and `following-sibling` XPath axes?,"`following` selects all nodes that appear after the current node in the document, whereas `following-sibling` selects only sibling nodes that appear after the current node."
