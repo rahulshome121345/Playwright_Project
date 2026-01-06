@@ -23,5 +23,27 @@ for(let pt of allproductcontents){
 
 
 
+//* Writing xpath using starts with
+
+const compprod = page.locator("//h2//a[starts-with(@href,'/build')]");
+const totalprodcount = await compprod.count();
+console.log("total product: ",totalprodcount);
+
+
+//* write xpaths using text
+const reglink = page.locator("//a[text()='Register']");
+await expect(reglink).toBeVisible();
+
+
+//* write xpath using last
+const lastitems = page.locator("//div[@class='column follow-us']//li[last()]");
+await expect(lastitems).toBeVisible();
+ console.log("last item is : ", await lastitems.textContent())
+
+
+ //* write xpath using position
+ const lastitem = page.locator("//div[@class='column follow-us']//li[position()=3]");
+ console.log("last item of the page is : ", await lastitem.textContent());
+ await expect(lastitem).toBeVisible();
 }
 )
